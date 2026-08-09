@@ -8,3 +8,5 @@ Because the pandemic restricted physical laboratory access during my undergradua
 
 **`ESP_32_simulation_01/main.cpp`** -  Programming modern 32-bit industrial architectures (ESP32) by writing direct  switches (`1 << Pin`) to dedicated hardware SET/CLEAR registers for single cycle.
 The code configures **GPIO Pin 2 as an Output** to drive an external status LED.
+
+**`ESP32_IDF_RTOS_Blink`** - This folder contains the same functional blinking LED application as `ESP_32_simulation_01`, but rewritten using Espressif's professional *ESP-IDF framework* and *FreeRTOS*.
