@@ -10,6 +10,7 @@ Because the pandemic restricted physical laboratory access during my undergradua
 The code configures **GPIO Pin 2 as an Output** to drive an external status LED.
 
 **`ESP32_IDF_RTOS_Blink`** - This folder contains the same functional blinking LED application as `ESP_32_simulation_01`, but rewritten using Espressif's professional *ESP-IDF framework* and *FreeRTOS*.
+
 **`ESP32_IDF_Interactive_Button_led.cpp`** - This project is an experiment with hardware interrupts on the ESP32 using the ESP-IDF framework.
   Configured GPIO 4 as an input button and turned on the internal pull-up resistor.
 Set up a hardware interrupt trigger on the negative edge (falling voltage) to capture the exact moment the button is pushed down.
