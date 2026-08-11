@@ -17,7 +17,7 @@ void app_main(void)
 {
     gpio_reset_pin(GPIO_NUM_2);
     gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);
-    gpio_set_level(GPIO_NUM_2, led_state); // Start with LED OFF
+    gpio_set_level(GPIO_NUM_2, led_state);
 
     
     gpio_reset_pin(GPIO_NUM_4);
