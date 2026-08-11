@@ -6,11 +6,19 @@
 #define BUTTON_PIN 4
 #define LED_PIN 2
 volatile int led_state = 0;
+static uint32_t last_time = 0;
 
 static void IRAM_ATTR button_isr_handler(void* arg) 
 {
-    led_state = !led_state;
-    gpio_set_level(GPIO_NUM_2, led_state);
+    uint32_t current_time = xTaskGetTickCountFromISR();
+    uint32_t debounce = 200/portTICK_PERIOD_MS;
+    if((current_time - last_time) > debounce)
+    {
+      led_state = !led_state;
+      gpio_set_level(GPIO_NUM_2, led_state);
+      last_time = current_time;
+    }
+    
 }
 
 void app_main(void)
