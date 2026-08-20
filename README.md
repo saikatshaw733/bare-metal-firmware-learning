@@ -21,3 +21,5 @@ Fixed a core  crash (`abort() called`) by replacing standard `printf` with `esp_
 
 **Part 2: (Software Debouncing Update)**
 To stabilize the circuit without adding physical hardware capacitors, I updated the primary script to include a custom software debouncer. Utilized `xTaskGetTickCountFromISR()` to poll the internal FreeRTOS system clock directly.
+
+**`ESP32_FreeRTOS_Multitasking/main.c`** - I  created two separate tasks: I wrote one function to handle blinking the LED (led_blink_task) and a second function to print text (print_task) so they run completely independently. I shared the CPU evenly: I gave both tasks the exact same priority level. This forces the chip to rapidly switch back and forth between them every millisecond so it feels like they are running at the exact same time. .
