@@ -16,3 +16,8 @@ The code configures **GPIO Pin 2 as an Output** to drive an external status LED.
 Set up a hardware interrupt trigger on the negative edge (falling voltage) to capture the exact moment the button is pushed down.
 Created an Interrupt Service Routine (ISR) function using `IRAM_ATTR` so it runs directly from internal RAM. 
 Fixed a core  crash (`abort() called`) by replacing standard `printf` with `esp_rom_printf`, learning that blocking functions are forbidden inside real-time interrupts.
+
+**`ESP_32_button_led_02/main.cpp`** - This project focuses on handling physical hardware inputs on the ESP32 using the official ESP-IDF framework, moving away from CPU-heavy polling loops to asynchronous, event-driven real-time events.Initially, I set up physical GPIO 4 as a button input with an internal pull-up resistor and mapped it to a negative edge trigger (`GPIO_INTR_NEGEDGE`). I wrote a basic Interrupt Service Routine (ISR) handler using the `IRAM_ATTR` attribute to instantly flip an LED state (`led_state = !led_state`). Instead of polling(using IF statement to check whether the led is on infinite times), I used hardware interrupt to save battery and cpu clock cycles.
+
+**Part 2: (Software Debouncing Update)**
+To stabilize the circuit without adding physical hardware capacitors, I updated the primary script to include a custom software debouncer. Utilized `xTaskGetTickCountFromISR()` to poll the internal FreeRTOS system clock directly.
