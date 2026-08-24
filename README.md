@@ -29,7 +29,7 @@ To stabilize the circuit without adding physical hardware capacitors, I updated 
 ## **`ESP32_FreeRTOS_Multitasking/main.c`** - 
 I  created two separate tasks: I wrote one function to handle blinking the LED (led_blink_task) and a second function to print text (print_task) so they run completely independently. I shared the CPU evenly: I gave both tasks the exact same priority level. This forces the chip to rapidly switch back and forth between them every millisecond so it feels like they are running at the exact same time.
 
-## Industrial_Thermal_Monitor
+## **`Industrial_Thermal_Monitor`**
 This project implements an analog signal processing sub-system that mimics an industrial boiler thermal monitoring node using the official ESP-IDF framework on the ESP32.I configured the ADC Unit 1 on Channel 6 (physical Pin 34) using an attenuation setting of 12dB. This hardware adjustment expands the measurement scale of the internal transistors, allowing the chip to safely sample voltages from 0V up to 3.3V without saturating or damaging the internal circuits.
 
 I built a mathematical translation layer inside the software. It takes raw quantization steps from the 12-bit SAR converter (0 to 4095) and processes them into precise voltage float values, which are then mapped to real-world industrial temperature data ranging from 0 to 200 degrees Celsius.
