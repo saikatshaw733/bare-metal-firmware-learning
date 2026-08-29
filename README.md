@@ -2,7 +2,7 @@
 ```description```-This repository contains my independent self-study projects in low-level firmware engineering, developed to prepare for Graduate Studies (M.Sc. in Electronics Engineering) in Italy
 I used the **Wokwi** simulation platform to bypass high-level software wrappers (like Arduino or HAL libraries). Instead, I focused entirely on writing direct **Memory-Mapped I/O** register code using C++ pointers and bitwise manipulation.
 
-**topics learnt** : bit manipulation, Memory-Mapped I/O, volatile keyword, Bitwise Masking, set/clear operation,Physical switch mechanics and Mechanical Contact Bouncing, Software Debouncing Filters using system tick counters, Analog Peripheral Architecture (Successive Approximation Registers - SAR ADC), Signal Attenuation configuration for physical voltage shields, Digital Quantization step math,
+**topics learnt** : bit manipulation, Memory-Mapped I/O, volatile keyword, Bitwise Masking, set/clear operation,Physical switch mechanics and Mechanical Contact Bouncing, Software Debouncing Filters using system tick counters, Analog Peripheral Architecture (Successive Approximation Registers - SAR ADC), Signal Attenuation configuration for physical voltage shields, Digital Quantization step math, Inter-Task Communication (IPC) & FreeRTOS Queues, 
 
 `**FILES DESCRIPTION** :-`
 
