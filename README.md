@@ -36,3 +36,5 @@ I built a mathematical translation layer inside the software. It takes raw quant
 
 I created an autonomous safety threshold loop. When the calculated temperature crosses 120 degrees Celsius, the code instantly bypasses standard task timings to fire a rapid safety warning by flashing the status LED on Pin 2.
 
+## ESP32 FreeRTOS Thread Safe Telemetry (Project 05)
+In this project, I upgraded the industrial boiler monitor by moving from a single loop to an advanced multi-tasking architecture. I split the program into two completely independent threads or tasks that securely share data using a FreeRTOS Queue.
