@@ -31,7 +31,7 @@ I  created two separate tasks: I wrote one function to handle blinking the LED (
 
 ## **`Industrial_Thermal_Monitor`**
 This project implements an analog signal processing sub-system that mimics an industrial boiler thermal monitoring node using the official ESP-IDF framework on the ESP32.I configured the ADC Unit 1 on Channel 6 (physical Pin 34) using an attenuation setting of 12dB. This hardware adjustment expands the measurement scale of the internal transistors, allowing the chip to safely sample voltages from 0V up to 3.3V without saturating or damaging the internal circuits.
-
+To mimic the boiler temperature increment, I used a potentiometer and an led that blinks as an alert when temperature rises above 120 degree Celsius.
 I built a mathematical translation layer inside the software. It takes raw quantization steps from the 12-bit SAR converter (0 to 4095) and processes them into precise voltage float values, which are then mapped to real-world industrial temperature data ranging from 0 to 200 degrees Celsius.
 
 I created an autonomous safety threshold loop. When the calculated temperature crosses 120 degrees Celsius, the code instantly bypasses standard task timings to fire a rapid safety warning by flashing the status LED on Pin 2.
