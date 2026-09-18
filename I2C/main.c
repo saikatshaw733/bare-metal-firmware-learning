@@ -23,7 +23,7 @@ void sensor_task(void *data)
   int reading = 0;
   while(1)
   {
-    adc_oneshot_read(my_adc,sensor,&reading);
+    adc_oneshot_read(my_adc,SENSOR,&reading);
     float voltage = (reading/4095.0)*3.3f;
     float temperature = (voltage/3.3f)*200;
     xQueueSend(thermal_queue,&temperature,0);
@@ -34,21 +34,25 @@ void sensor_task(void *data)
 void display_task(void *data)
 {
   float telemetry = 0.0f;
-  if(xQueueReceive(thermal_queue,&telemetry,portMax_DELAY)==pdPASS)
+  while(1)
+  {
+  if(xQueueReceive(thermal_queue,&telemetry,portMAX_DELAY)==pdPASS)
   {
     i2c_cmd_handle_t command_link= i2c_cmd_link_create();
     i2c_master_start(command_link);
+    i2c_master_write_byte(command_link, (OLED << 1) | I2C_MASTER_WRITE, true);
     i2c_master_write_byte(command_link,0x40,true);
     i2c_master_stop(command_link);
     i2c_master_cmd_begin(I2C_MASTER,command_link,100 / portTICK_PERIOD_MS);
     i2c_cmd_link_delete(command_link);
-    if(telemetry_data > 120.0f) 
+    if(telemetry > 120.0f) 
     {
       gpio_set_level(LED, 1);
-      vTaskDelay(500/portTICK_period_MS);
+      vTaskDelay(500/portTICK_PERIOD_MS);
       gpio_set_level(LED, 0);
-      vTaskDelay(500/portTICK_period_MS);
+      vTaskDelay(500/portTICK_PERIOD_MS);
     }
+}
 }
 }
 void i2c(void)
@@ -70,7 +74,6 @@ void app_main(void)
     gpio_reset_pin(LED);
     gpio_set_direction(LED, GPIO_MODE_OUTPUT);
     gpio_set_level(LED, 0);
-
     adc_oneshot_unit_init_cfg_t unit_form = { .unit_id = ADC_UNIT_1 };
     adc_oneshot_new_unit(&unit_form, &my_adc);
     adc_oneshot_chan_cfg_t pin_form = { .atten = ADC_ATTEN_DB_12, .bitwidth = ADC_BITWIDTH_12 };
@@ -81,6 +84,6 @@ void app_main(void)
     xTaskCreate(display_task, "Display_Task", 2048, NULL, 2, NULL);
     while(1)
     {
-      vTaskDelay(1000/portTICK_PERIOD_MS):
+      vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 }
