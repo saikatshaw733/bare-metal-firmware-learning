@@ -36,5 +36,8 @@ I built a mathematical translation layer inside the software. It takes raw quant
 
 I created an autonomous safety threshold loop. When the calculated temperature crosses 120 degrees Celsius, the code instantly bypasses standard task timings to fire a rapid safety warning by flashing the status LED on Pin 2.
 
-## ESP32 FreeRTOS Thread Safe Telemetry (Project 05)
+## **`ESP32 FreeRTOS Thread Safe Telemetry (Project 05)`**
 In this project, I upgraded the industrial boiler monitor by moving from a single loop to an advanced multi-tasking architecture. I split the program into two completely independent threads or tasks that securely share data using a FreeRTOS Queue.
+
+## **`06_FreeRTOS_Multiconsumer(Project 05)`**
+In this project, I engineered a multi-consumer telemetry pipeline by upgrading the previous single-receiver model into a highly responsive, priority-driven industrial protection system.I decoupled the system into three distinct concurrent tasks: a sensor thread(collects data from hardware), a low-priority logging thread, and an highest-priority safety valve thread. I resolved data destruction bottlenecks of xQueueSend by xQueueOverwrite and xQueuePeek. I applied strict task priority preemption by assigning a Priority of 3 to the safety thread and a Priority of 2 to the logging thread. This ensures that if a thermal emergency strikes, the scheduler will instantly freeze slow string-formatting console logs to give the critical safety hardware pin immediate CPU execution rights.
