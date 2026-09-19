@@ -94,7 +94,7 @@ void oled_hardware_init(void)
     i2c_master_cmd_begin(I2C_MASTER, cmd, 100 / portTICK_PERIOD_MS);
     i2c_cmd_link_delete(cmd);
     
-    printf("OLED ActivatED Successfully!\n");
+    printf("OLED Activated Successfully!\n");
 }
 
 void i2c(void)
