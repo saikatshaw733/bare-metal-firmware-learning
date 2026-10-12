@@ -44,3 +44,7 @@ In this project, I engineered a multi-consumer telemetry pipeline by upgrading t
 
 ## **`07_Industrial_thermal_monitor_with_I2C_architecture`**
 I upgraded project 5 with I2C protocol for communication between 128*64 OLED screen **SSD1306** and **ESP32** using Inter-integrated chip architecture. I wired up the shared I2C bus network by connecting the screen pins straight to the ESP32 hardware data line (GPIO 21) and clock line (GPIO 22). I used low-level bit manipulation by shifting the screen's 7-bit ID address (0x3C) left by one slot and using a bitwise OR operation to tell the screen that the ESP32 wants to write data. I used oled_hardware_init function to initialize the OLED hardware by sending hexadecimal address to switch up and charge the internal charge pump of screen. ##**I used the OLED to turn into white screen along with blinking LED as an alert, when temperature crosses 120 degrees.**.
+
+## **`08_UART_CLI_INTERFACE`**
+In this project, I moved away from high-level libraries to set up a custom UART asynchronous serial interface using the official ESP-IDF framework to capture live keyboard input text streams.I initialized the internal UART0 controller peripheral by establishing a strict 115,200 Baud timing contract, configuring 8-bit data. I allocated a 2048-byte RX  buffer memory in internal SRAM memory to act as a background holding tray. This catches incoming keyboard character strings asynchronously.
+**errors i faced**: Virtual File System issue, Guru Meditation errors, assert failed error, reboot loop error.
