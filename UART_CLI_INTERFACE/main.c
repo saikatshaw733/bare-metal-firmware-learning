@@ -21,7 +21,7 @@ void uart_initialize(void)
 void uart_task(void *parameter)
 {
     uint8_t rx_memory[BUFF_SIZE];
-    int length = uart_read_bytes(UART_PORT,rx_memory,BUFF_SIZE-1,20/portTICK_PERIOD_MS)
+    int length = uart_read_bytes(UART_PORT,rx_memory,BUFF_SIZE-1,20/portTICK_PERIOD_MS);
     
         if(length>0)
         {
