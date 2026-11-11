@@ -48,3 +48,8 @@ I upgraded project 5 with I2C protocol for communication between 128*64 OLED scr
 ## **`08_UART_CLI_INTERFACE`**
 In this project, I moved away from high-level libraries to set up a custom UART asynchronous serial interface using the official ESP-IDF framework to capture live keyboard input text streams.I initialized the internal UART0 controller peripheral by establishing a strict 115,200 Baud timing contract, configuring 8-bit data. I allocated a 2048-byte RX  buffer memory in internal SRAM memory to act as a background holding tray. This catches incoming keyboard character strings asynchronously.
 **errors i faced**: Virtual File System issue, Guru Meditation errors, assert failed error, reboot loop error.
+
+## **`09_UART_CLI_INTERFACE_STRNCMP`**
+In this project, I upgraded the baseline asynchronous system into a fully functional, intelligent Command Line Interface (CLI) capable of changing system variables during runtime using string parser tools like sscanf() and strncmp().
+I used strncmp to compare incoming command and the default keyword like SETPOINT to control the temperature during runtime.
+I mapped the newtemperaturec values straight to a global register inside the chip's internal RAM, allowing a user to adjust system alert thresholds live without rebooting the microcontroller.
